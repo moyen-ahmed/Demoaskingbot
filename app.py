@@ -3,6 +3,9 @@
 import random
 import string
 from typing import List, Dict, Any, Optional, Literal
+import json
+from pathlib import Path
+
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -54,164 +57,271 @@ class AnswerResponse(BaseModel):
     next_question: Optional[Question] = None
     finished: bool = False
 
+# # -----------------------------
+# # Static Question Bank (expanded)
+# # -----------------------------
+# QUESTION_BANK: Dict[str, List[Question]] = {
+
+#     # ==================== AI ====================
+#     "AI": [
+#         Question(
+#             id="ai1", type="mcq", topic="AI",
+#             text="Which learning paradigm uses labeled data?",
+#             choices=["Unsupervised", "Reinforcement", "Supervised", "Self-supervised"],
+#             answer=2,
+#         ),
+#         Question(
+#             id="ai2", type="short", topic="AI",
+#             text="Name one activation function used in deep learning.",
+#             answer=["relu", "sigmoid", "tanh", "gelu", "selu", "leaky relu"],
+#         ),
+#         Question(
+#             id="ai3", type="mcq", topic="AI",
+#             text="Which loss function is commonly used for multi-class classification?",
+#             choices=["Binary Cross-Entropy", "Huber Loss", "Categorical Cross-Entropy", "MAE"],
+#             answer=2,
+#         ),
+#         Question(
+#             id="ai4", type="short", topic="AI",
+#             text="What does CNN stand for?",
+#             answer=["convolutional neural network"],
+#         ),
+#         Question(
+#             id="ai5", type="short", topic="AI",
+#             text="What does RNN stand for?",
+#             answer=["recurrent neural network"],
+#         ),
+#         Question(
+#             id="ai6", type="mcq", topic="AI",
+#             text="Which of these is a transformer-based model?",
+#             choices=["VGG16", "ResNet", "BERT", "LeNet"],
+#             answer=2,
+#         ),
+#         Question(
+#             id="ai7", type="short", topic="AI",
+#             text="Name one optimization algorithm used in training neural networks.",
+#             answer=["adam", "sgd", "rmsprop", "adagrad"],
+#         ),
+#            Question(
+#             id="ai8",
+#             type="short",
+#             topic="AI",
+#             text=(
+#                 "In 3–4 lines, explain the difference between supervised and "
+#                 "unsupervised learning.\n"
+#                 "Your answer should mention labeled data and that supervised "
+#                 "learns a mapping from inputs to outputs, while unsupervised "
+#                 "works with unlabeled data."
+#             ),
+#             answer=[
+#                 # we just store key words; user can write full sentences
+#                 "labeled data mapping inputs outputs unlabeled data unsupervised",
+#                 "supervised uses labeled data unsupervised uses unlabeled data",
+#             ],
+#         ),
+#         Question(
+#             id="ai9",
+#             type="short",
+#             topic="AI",
+#             text=(
+#                 "In 3–4 lines, describe what overfitting means in machine learning.\n"
+#                 "Mention training data, memorizing patterns, and poor "
+#                 "generalization to new data."
+#             ),
+#             answer=[
+#                 "memorizes training data poor generalization new data overfitting",
+#                 "fits training data too well performs badly on unseen data",
+#             ],
+#         ),
+#     ],
+
+
+#     # ==================== DATA SCIENCE ====================
+#     "Data Science": [
+#         Question(
+#             id="ds1", type="short", topic="Data Science",
+#             text="What does SQL stand for?",
+#             answer=["structured query language"],
+#         ),
+#         Question(
+#             id="ds2", type="mcq", topic="Data Science",
+#             text="Which metric works best for imbalanced classification?",
+#             choices=["Accuracy", "Recall", "MAE", "RMSE"],
+#             answer=1,
+#         ),
+#         Question(
+#             id="ds3", type="short", topic="Data Science",
+#             text="Name a common missing-value handling method.",
+#             answer=["mean imputation", "median imputation", "mode imputation", "drop rows", "drop columns"],
+#         ),
+#         Question(
+#             id="ds4", type="mcq", topic="Data Science",
+#             text="Which visualization shows numeric distribution?",
+#             choices=["Box Plot", "Pie Chart", "Bar Chart", "Scatter Plot"],
+#             answer=0,
+#         ),
+#         Question(
+#             id="ds5", type="short", topic="Data Science",
+#             text="Name one Python library used for data analysis.",
+#             answer=["pandas", "numpy"],
+#         ),
+#         Question(
+#             id="ds6", type="mcq", topic="Data Science",
+#             text="Which step is part of the CRISP-DM process?",
+#             choices=["Deployment", "Encryption", "Backpropagation", "Tokenization"],
+#             answer=0,
+#         ),
+#                 Question(
+#             id="ds7",
+#             type="short",
+#             topic="Data Science",
+#             text=(
+#                 "In 3–4 lines, explain the difference between mean, median, "
+#                 "and mode.\nMention that they are measures of central tendency "
+#                 "and when median is more robust."
+#             ),
+#             answer=[
+#                 "mean average median middle value mode most frequent value",
+#                 "median robust to outliers mean sensitive to outliers",
+#             ],
+#         ),
+#         Question(
+#             id="ds8",
+#             type="short",
+#             topic="Data Science",
+#             text=(
+#                 "In 3–4 lines, explain what a confusion matrix is and what it "
+#                 "shows for a classifier.\nMention true positives, false positives, "
+#                 "true negatives and false negatives."
+#             ),
+#             answer=[
+#                 "table of true positives false positives true negatives false negatives",
+#                 "matrix showing tp fp tn fn performance of classifier",
+#             ],
+#         ),
+
+#     ],
+
+
+#     # ==================== WEB DEVELOPMENT ====================
+#     "Web Dev": [
+#         Question(
+#             id="wd1", type="mcq", topic="Web Dev",
+#             text="Which HTTP method is used to create a resource?",
+#             choices=["GET", "POST", "PUT", "DELETE"],
+#             answer=1,
+#         ),
+#         Question(
+#             id="wd2", type="short", topic="Web Dev",
+#             text="Name one 2D CSS layout tool.",
+#             answer=["grid", "css grid"],
+#         ),
+#         Question(
+#             id="wd3", type="mcq", topic="Web Dev",
+#             text="Which status code means 'Not Found'?",
+#             choices=["200", "301", "404", "500"],
+#             answer=2,
+#         ),
+#         Question(
+#             id="wd4", type="short", topic="Web Dev",
+#             text="What does HTML stand for?",
+#             answer=["hypertext markup language"],
+#         ),
+#         Question(
+#             id="wd5", type="short", topic="Web Dev",
+#             text="What does CSS stand for?",
+#             answer=["cascading style sheets"],
+#         ),
+#         Question(
+#             id="wd6", type="mcq", topic="Web Dev",
+#             text="Which tag is used to create a hyperlink?",
+#             choices=["<link>", "<a>", "<href>", "<url>"],
+#             answer=1,
+#         ),
+#     ],
+
+
+#     # ==================== ALGORITHMS ====================
+#     "Algorithms": [
+#         Question(
+#             id="alg1", type="mcq", topic="Algorithms",
+#             text="Time complexity of binary search?",
+#             choices=["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+#             answer=1,
+#         ),
+#         Question(
+#             id="alg2", type="short", topic="Algorithms",
+#             text="Give one O(n log n) sorting algorithm.",
+#             answer=["quicksort", "merge sort", "heapsort"],
+#         ),
+#         Question(
+#             id="alg3", type="mcq", topic="Algorithms",
+#             text="Best structure for FIFO?",
+#             choices=["Stack", "Queue", "Graph", "Tree"],
+#             answer=1,
+#         ),
+#         Question(
+#             id="alg4", type="short", topic="Algorithms",
+#             text="Name the algorithm used to find the shortest path in a weighted graph.",
+#             answer=["dijkstra", "dijkstra's algorithm"],
+#         ),
+#         Question(
+#             id="alg5", type="mcq", topic="Algorithms",
+#             text="Which of these is a divide-and-conquer algorithm?",
+#             choices=["DFS", "BFS", "Merge Sort", "Bubble Sort"],
+#             answer=2,
+#         ),
+#     ],
+
+
+#     # ==================== MATH ====================
+#     "Math": [
+#         Question(
+#             id="math1", type="mcq", topic="Math",
+#             text="Derivative of x^2?",
+#             choices=["x", "2x", "x^2", "2"],
+#             answer=1,
+#         ),
+#         Question(
+#             id="math2", type="short", topic="Math",
+#             text="What is 7 × 8?",
+#             answer=["56"],
+#         ),
+#         Question(
+#             id="math3", type="mcq", topic="Math",
+#             text="Which is a prime number?",
+#             choices=["15", "21", "23", "25"],
+#             answer=2,
+#         ),
+#         Question(
+#             id="math4", type="short", topic="Math",
+#             text="What is the square root of 81?",
+#             answer=["9"],
+#         ),
+#         Question(
+#             id="math5", type="mcq", topic="Math",
+#             text="What is 12 / 3?",
+#             choices=["4", "3", "6", "2"],
+#             answer=0,
+#         ),
+#     ],
+# }
 # -----------------------------
-# Static Question Bank (edit/add as you like)
+# Static Question Bank loaded from JSON file
 # -----------------------------
-QUESTION_BANK: Dict[str, List[Question]] = {
-    "AI": [
-        Question(
-            id="ai1",
-            type="mcq",
-            topic="AI",
-            text="Which learning paradigm uses labeled data?",
-            choices=["Unsupervised", "Reinforcement", "Supervised", "Self-supervised"],
-            answer=2,
-        ),
-        Question(
-            id="ai2",
-            type="short",
-            topic="AI",
-            text="Name one common activation function used in neural networks.",
-            answer=["relu", "sigmoid", "tanh", "leaky relu", "gelu"],
-        ),
-        Question(
-            id="ai3",
-            type="mcq",
-            topic="AI",
-            text="Which of these is a common loss function for classification?",
-            choices=["Mean Squared Error", "Cross-Entropy", "Huber", "L1"],
-            answer=1,
-        ),
-        Question(
-            id="ai4",
-            type="short",
-            topic="AI",
-            text="What does ‘CNN’ stand for?",
-            answer=["convolutional neural network"],
-        ),
-    ],
-    "Data Science": [
-        Question(
-            id="ds1",
-            type="short",
-            topic="Data Science",
-            text="What does SQL stand for?",
-            answer=["structured query language"],
-        ),
-        Question(
-            id="ds2",
-            type="mcq",
-            topic="Data Science",
-            text="Which metric is usually best for imbalanced binary classification?",
-            choices=["Accuracy", "Precision", "Recall", "ROC-AUC"],
-            answer=3,
-        ),
-        Question(
-            id="ds3",
-            type="short",
-            topic="Data Science",
-            text="Name one common way to handle missing values.",
-            answer=[
-                "imputation",
-                "mean imputation",
-                "median imputation",
-                "mode imputation",
-                "drop rows",
-                "drop columns",
-            ],
-        ),
-        Question(
-            id="ds4",
-            type="mcq",
-            topic="Data Science",
-            text="Which plot is best to show the distribution of a single numeric variable?",
-            choices=["Box plot", "Scatter plot", "Line chart", "Bar chart"],
-            answer=0,
-        ),
-    ],
-    "Web Dev": [
-        Question(
-            id="wd1",
-            type="mcq",
-            topic="Web Dev",
-            text="Which HTTP method is typically used to create a resource?",
-            choices=["GET", "POST", "PUT", "DELETE"],
-            answer=1,
-        ),
-        Question(
-            id="wd2",
-            type="short",
-            topic="Web Dev",
-            text="Name a CSS layout technique for two-dimensional layouts.",
-            answer=["css grid", "grid"],
-        ),
-        Question(
-            id="wd3",
-            type="mcq",
-            topic="Web Dev",
-            text="Which status code means ‘Not Found’?",
-            choices=["200", "301", "404", "500"],
-            answer=2,
-        ),
-        Question(
-            id="wd4",
-            type="short",
-            topic="Web Dev",
-            text="What does HTML stand for?",
-            answer=["hypertext markup language"],
-        ),
-    ],
-    "Algorithms": [
-        Question(
-            id="alg1",
-            type="mcq",
-            topic="Algorithms",
-            text="What is the time complexity of binary search on a sorted array?",
-            choices=["O(1)", "O(log n)", "O(n)", "O(n log n)"],
-            answer=1,
-        ),
-        Question(
-            id="alg2",
-            type="short",
-            topic="Algorithms",
-            text="Name a common sorting algorithm with average complexity O(n log n).",
-            answer=["quicksort", "merge sort", "merge-sort", "heap sort", "heapsort"],
-        ),
-        Question(
-            id="alg3",
-            type="mcq",
-            topic="Algorithms",
-            text="Which data structure is best for implementing a FIFO queue?",
-            choices=["Stack", "Array", "Linked list", "Hash table"],
-            answer=2,
-        ),
-    ],
-    "Math": [
-        Question(
-            id="math1",
-            type="mcq",
-            topic="Math",
-            text="What is the derivative of x^2?",
-            choices=["x", "2x", "x^2", "2"],
-            answer=1,
-        ),
-        Question(
-            id="math2",
-            type="short",
-            topic="Math",
-            text="What is 7 * 8?",
-            answer=["56"],
-        ),
-        Question(
-            id="math3",
-            type="mcq",
-            topic="Math",
-            text="Which of these is a prime number?",
-            choices=["15", "21", "23", "25"],
-            answer=2,
-        ),
-    ],
-}
+BASE_DIR = Path(__file__).resolve().parent
+QUESTION_FILE = BASE_DIR / "questions.json"
+
+if not QUESTION_FILE.exists():
+    raise RuntimeError(f"questions.json file not found at: {QUESTION_FILE}")
+
+with QUESTION_FILE.open("r", encoding="utf-8") as f:
+    raw_questions = json.load(f)
+
+QUESTION_BANK: Dict[str, List[Question]] = {}
+for topic, q_list in raw_questions.items():
+    QUESTION_BANK[topic] = [Question(**q) for q in q_list]
+
 
 # -----------------------------
 # Session handling
@@ -225,19 +335,36 @@ def _normalize(s: str) -> str:
     return " ".join(str(s).lower().strip().split())
 
 def _evaluate_answer(q: Question, user_answer: str) -> bool:
+    ua = _normalize(user_answer)
+
     if q.type == "mcq":
-        ua = _normalize(user_answer)
-        # allow entering the index (0,1,2,3)
+        # allow entering the index number
         try:
             idx = int(ua)
             return isinstance(q.answer, int) and idx == q.answer
         except ValueError:
             pass
+
         # or matching the option text
         if q.choices is None:
             return False
         correct_text = q.choices[q.answer] if isinstance(q.answer, int) else str(q.answer)
         return _normalize(correct_text) == ua
+
+    # ---------- short answer ----------
+    # For short answers we treat each candidate as a set of required words.
+    # If the user's answer contains ALL words of ANY candidate, we accept it.
+    if isinstance(q.answer, list):
+        for candidate in q.answer:
+            words = _normalize(candidate).split()
+            if all(w in ua for w in words):
+                return True
+        return False
+
+    # single-string answer: just check all words appear
+    target_words = _normalize(str(q.answer)).split()
+    return all(w in ua for w in target_words)
+
 
     # short answer
     if isinstance(q.answer, list):

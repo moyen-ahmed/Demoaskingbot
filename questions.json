@@ -1,0 +1,1217 @@
+{
+  "AI": [
+    {
+      "id": "ai1",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which learning paradigm uses labeled data?",
+      "choices": [
+        "Unsupervised learning",
+        "Reinforcement learning",
+        "Supervised learning",
+        "Self-supervised learning"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "ai2",
+      "type": "short",
+      "topic": "AI",
+      "text": "Name one activation function commonly used in deep neural networks.",
+      "answer": [
+        "relu",
+        "sigmoid",
+        "tanh",
+        "gelu",
+        "leaky relu"
+      ]
+    },
+    {
+      "id": "ai3",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which loss function is most commonly used for multi-class classification?",
+      "choices": [
+        "Mean Squared Error",
+        "Categorical Cross-Entropy",
+        "Mean Absolute Error",
+        "Huber Loss"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ai4",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, describe what overfitting means in machine learning. Mention training data, memorizing patterns, and poor generalization to new data.",
+      "answer": [
+        "memorizes training data poor generalization new data overfitting",
+        "fits training data too well performs badly on unseen data"
+      ]
+    },
+    {
+      "id": "ai5",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which of the following is a convolutional neural network architecture?",
+      "choices": [
+        "BERT",
+        "ResNet",
+        "GPT-2",
+        "Word2Vec"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ai6",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, explain what a convolution layer does in a CNN.",
+      "answer": [
+        "local receptive field",
+        "learns filters",
+        "feature maps",
+        "sliding window"
+      ]
+    },
+    {
+      "id": "ai7",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which optimizer is widely used as a default choice in deep learning?",
+      "choices": [
+        "SGD without momentum",
+        "Adam",
+        "RMSProp",
+        "AdaGrad"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ai8",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, explain the difference between supervised and unsupervised learning.",
+      "answer": [
+        "supervised uses labeled data unsupervised uses unlabeled data",
+        "labeled inputs outputs vs unlabeled structure clustering"
+      ]
+    },
+    {
+      "id": "ai9",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Dropout is mainly used to:",
+      "choices": [
+        "Increase model size",
+        "Speed up inference",
+        "Reduce overfitting",
+        "Normalize input"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "ai10",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, what is a validation set used for during training?",
+      "answer": [
+        "tuning hyperparameters",
+        "early stopping",
+        "monitor generalization",
+        "not used for training"
+      ]
+    },
+    {
+      "id": "ai11",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which of these is an example of a generative model?",
+      "choices": [
+        "SVM",
+        "Random Forest",
+        "Variational Autoencoder",
+        "K-Means"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "ai12",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, describe what a confusion matrix shows for a classifier.",
+      "answer": [
+        "true positives",
+        "false positives",
+        "true negatives",
+        "false negatives"
+      ]
+    },
+    {
+      "id": "ai13",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "ReLU activation outputs:",
+      "choices": [
+        "Only negative values",
+        "Only positive values",
+        "max(0, x)",
+        "x squared"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "ai14",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, explain what a learning rate is and why it matters.",
+      "answer": [
+        "step size of gradient updates",
+        "too high diverge",
+        "too low slow"
+      ]
+    },
+    {
+      "id": "ai15",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which technique is commonly used for reducing the dimensionality of data?",
+      "choices": [
+        "PCA",
+        "BatchNorm",
+        "Dropout",
+        "Gradient Clipping"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "ai16",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, describe what transfer learning is in deep learning.",
+      "answer": [
+        "reuse pretrained model",
+        "fine-tune on new task",
+        "saves data and time"
+      ]
+    },
+    {
+      "id": "ai17",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Which of these is a typical activation function used in the output layer for binary classification?",
+      "choices": [
+        "Softmax",
+        "Sigmoid",
+        "ReLU",
+        "Tanh"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ai18",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, explain the difference between precision and recall.",
+      "answer": [
+        "precision tp over predicted positive",
+        "recall tp over actual positive"
+      ]
+    },
+    {
+      "id": "ai19",
+      "type": "mcq",
+      "topic": "AI",
+      "text": "Batch Normalization is primarily used to:",
+      "choices": [
+        "Increase dataset size",
+        "Stabilize and speed up training",
+        "Reduce label noise",
+        "Perform data augmentation"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ai20",
+      "type": "short",
+      "topic": "AI",
+      "text": "In 2–4 lines, what is a loss function used for in training neural networks?",
+      "answer": [
+        "measure prediction error",
+        "guide gradient descent",
+        "optimize weights"
+      ]
+    }
+  ],
+  "Data Science": [
+    {
+      "id": "ds1",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "What does SQL stand for?",
+      "answer": [
+        "structured query language"
+      ]
+    },
+    {
+      "id": "ds2",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which plot is best suited to show the distribution of a single numeric variable?",
+      "choices": [
+        "Box plot",
+        "Scatter plot",
+        "Line chart",
+        "Bar chart"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "ds3",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, explain the difference between mean and median and when median is preferred.",
+      "answer": [
+        "mean average",
+        "median middle value",
+        "outliers",
+        "median more robust"
+      ]
+    },
+    {
+      "id": "ds4",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which metric is usually more informative than accuracy on highly imbalanced data?",
+      "choices": [
+        "Precision/Recall",
+        "R-squared",
+        "RMSE",
+        "MAE"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "ds5",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, what is a confusion matrix and what does it show?",
+      "answer": [
+        "true positives",
+        "false positives",
+        "true negatives",
+        "false negatives"
+      ]
+    },
+    {
+      "id": "ds6",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which of these is a common technique for reducing dimensionality?",
+      "choices": [
+        "Standardization",
+        "PCA",
+        "One-hot encoding",
+        "Oversampling"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ds7",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "Name two popular Python libraries for data analysis.",
+      "answer": [
+        "pandas and numpy",
+        "numpy and pandas"
+      ]
+    },
+    {
+      "id": "ds8",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which of the following is an example of a regression problem?",
+      "choices": [
+        "Predicting house prices",
+        "Predicting spam or not spam",
+        "Classifying images",
+        "Clustering customers"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "ds9",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, explain the train/validation/test split and why it is used.",
+      "answer": [
+        "separate data",
+        "prevent overfitting",
+        "evaluate generalization"
+      ]
+    },
+    {
+      "id": "ds10",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which scaling method transforms features to have zero mean and unit variance?",
+      "choices": [
+        "Min-Max Scaling",
+        "Standardization (Z-score)",
+        "Robust Scaling",
+        "Log Transform"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ds11",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, describe what feature engineering is.",
+      "answer": [
+        "create new features",
+        "transform raw data",
+        "improve model performance"
+      ]
+    },
+    {
+      "id": "ds12",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which of these is an unsupervised learning algorithm?",
+      "choices": [
+        "Logistic Regression",
+        "K-Means",
+        "Random Forest",
+        "Linear Regression"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "ds13",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, explain what overfitting means in the context of a data science model.",
+      "answer": [
+        "fits noise",
+        "training performance high",
+        "test performance poor"
+      ]
+    },
+    {
+      "id": "ds14",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which metric is commonly used to evaluate regression models?",
+      "choices": [
+        "Accuracy",
+        "F1-score",
+        "RMSE",
+        "ROC-AUC"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "ds15",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, describe what cross-validation is and why it is useful.",
+      "answer": [
+        "k-fold",
+        "multiple train test splits",
+        "more reliable estimate"
+      ]
+    },
+    {
+      "id": "ds16",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which database type is best described as 'tables with rows and columns'?",
+      "choices": [
+        "Relational database",
+        "NoSQL document store",
+        "Key-value store",
+        "Graph database"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "ds17",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, explain the difference between classification and clustering.",
+      "answer": [
+        "classification labeled classes",
+        "clustering groups unlabeled data"
+      ]
+    },
+    {
+      "id": "ds18",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which library is commonly used in Python for machine learning algorithms like RandomForest?",
+      "choices": [
+        "pandas",
+        "matplotlib",
+        "scikit-learn",
+        "seaborn"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "ds19",
+      "type": "short",
+      "topic": "Data Science",
+      "text": "In 2–4 lines, what is an outlier and why might you want to handle it?",
+      "answer": [
+        "far from rest of data",
+        "influences mean",
+        "can distort models"
+      ]
+    },
+    {
+      "id": "ds20",
+      "type": "mcq",
+      "topic": "Data Science",
+      "text": "Which of these is a measure of central tendency?",
+      "choices": [
+        "Variance",
+        "Standard deviation",
+        "Mean",
+        "Range"
+      ],
+      "answer": 2
+    }
+  ],
+  "Web Dev": [
+    {
+      "id": "wd1",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which HTTP method is typically used to retrieve data from a server without modifying it?",
+      "choices": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "wd2",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, explain the difference between HTML, CSS, and JavaScript.",
+      "answer": [
+        "html structure",
+        "css styling",
+        "javascript interactivity",
+        "client side"
+      ]
+    },
+    {
+      "id": "wd3",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which status code usually indicates that a resource was not found?",
+      "choices": [
+        "200",
+        "301",
+        "404",
+        "500"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "wd4",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, what is responsive web design?",
+      "answer": [
+        "adapts to different screen sizes",
+        "mobile friendly layout",
+        "media queries"
+      ]
+    },
+    {
+      "id": "wd5",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which HTML tag is used to create a hyperlink?",
+      "choices": [
+        "<link>",
+        "<a>",
+        "<p>",
+        "<href>"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "wd6",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, explain what CSS Flexbox is used for.",
+      "answer": [
+        "one-dimensional layout",
+        "align items",
+        "distribute space",
+        "row or column"
+      ]
+    },
+    {
+      "id": "wd7",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which of these best describes CSS Grid?",
+      "choices": [
+        "One-dimensional layout system",
+        "Two-dimensional layout system",
+        "Image optimization tool",
+        "CSS preprocessor"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "wd8",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, describe what an HTTP request and response are.",
+      "answer": [
+        "client sends request",
+        "server sends response",
+        "headers body status code"
+      ]
+    },
+    {
+      "id": "wd9",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which JavaScript method is commonly used to attach an event handler?",
+      "choices": [
+        "querySelector",
+        "addEventListener",
+        "getElementById",
+        "setTimeout"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "wd10",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, explain what a REST API is.",
+      "answer": [
+        "representational state transfer",
+        "uses http verbs",
+        "resources endpoints",
+        "stateless"
+      ]
+    },
+    {
+      "id": "wd11",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which HTML element is semantic and typically used for navigation links?",
+      "choices": [
+        "<div>",
+        "<nav>",
+        "<span>",
+        "<section>"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "wd12",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, what is the difference between inline, block, and inline-block elements in CSS?",
+      "answer": [
+        "block full width",
+        "inline no width height",
+        "inline-block mix",
+        "layout behavior"
+      ]
+    },
+    {
+      "id": "wd13",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which attribute is used in HTML to specify an inline CSS style?",
+      "choices": [
+        "style",
+        "class",
+        "id",
+        "css"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "wd14",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, explain what the DOM (Document Object Model) is.",
+      "answer": [
+        "tree representation of html",
+        "javascript can manipulate",
+        "nodes elements"
+      ]
+    },
+    {
+      "id": "wd15",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which of these best describes React?",
+      "choices": [
+        "CSS framework",
+        "JavaScript library for building UIs",
+        "Database",
+        "Server framework"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "wd16",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, explain the difference between client-side rendering and server-side rendering.",
+      "answer": [
+        "client renders in browser",
+        "server sends ready html",
+        "performance seo tradeoffs"
+      ]
+    },
+    {
+      "id": "wd17",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which HTTP status code usually indicates a successful request?",
+      "choices": [
+        "200",
+        "204",
+        "301",
+        "400"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "wd18",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, describe what cookies are used for in web development.",
+      "answer": [
+        "store small pieces of data",
+        "sessions",
+        "preferences",
+        "sent with requests"
+      ]
+    },
+    {
+      "id": "wd19",
+      "type": "mcq",
+      "topic": "Web Dev",
+      "text": "Which of the following is a CSS preprocessor?",
+      "choices": [
+        "TypeScript",
+        "Sass",
+        "Babel",
+        "Webpack"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "wd20",
+      "type": "short",
+      "topic": "Web Dev",
+      "text": "In 2–4 lines, explain what CORS (Cross-Origin Resource Sharing) is.",
+      "answer": [
+        "browser security",
+        "controls cross origin requests",
+        "requires headers from server"
+      ]
+    }
+  ],
+  "Algorithms": [
+    {
+      "id": "alg1",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "What is the time complexity of binary search on a sorted array?",
+      "choices": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "alg2",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, explain the difference between time complexity and space complexity.",
+      "answer": [
+        "time steps operations",
+        "space memory usage",
+        "big o notation"
+      ]
+    },
+    {
+      "id": "alg3",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which algorithm is commonly used to find the shortest path in a weighted graph without negative edges?",
+      "choices": [
+        "Kruskal's algorithm",
+        "Dijkstra's algorithm",
+        "Prim's algorithm",
+        "DFS"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "alg4",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, what is a stable sorting algorithm?",
+      "answer": [
+        "preserves order of equal elements",
+        "important for multi key sorting"
+      ]
+    },
+    {
+      "id": "alg5",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which of these sorting algorithms has average time complexity O(n log n)?",
+      "choices": [
+        "Bubble Sort",
+        "Insertion Sort",
+        "Merge Sort",
+        "Selection Sort"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "alg6",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, describe what a hash table is and its typical time complexity for search.",
+      "answer": [
+        "key value store",
+        "hash function",
+        "average o(1) lookup"
+      ]
+    },
+    {
+      "id": "alg7",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which traversal uses a queue data structure on a graph or tree?",
+      "choices": [
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Inorder traversal",
+        "Postorder traversal"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "alg8",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, explain the divide-and-conquer strategy with one example.",
+      "answer": [
+        "split problem",
+        "solve subproblems recursively",
+        "merge",
+        "example merge sort or quicksort"
+      ]
+    },
+    {
+      "id": "alg9",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which data structure is best suited to implement a LIFO (Last-In, First-Out) behavior?",
+      "choices": [
+        "Queue",
+        "Stack",
+        "Linked List",
+        "Heap"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "alg10",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, what is dynamic programming and when is it useful?",
+      "answer": [
+        "overlapping subproblems",
+        "optimal substructure",
+        "store results",
+        "improve recursion"
+      ]
+    },
+    {
+      "id": "alg11",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which algorithm can be used to detect cycles in an undirected graph?",
+      "choices": [
+        "Kruskal's algorithm",
+        "Topological sort",
+        "DFS with visited tracking",
+        "Binary search"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "alg12",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, explain the difference between worst-case, average-case, and best-case complexity.",
+      "answer": [
+        "different input scenarios",
+        "upper bound",
+        "typical behavior",
+        "lower bound"
+      ]
+    },
+    {
+      "id": "alg13",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "What is the worst-case time complexity of quicksort?",
+      "choices": [
+        "O(n)",
+        "O(n log n)",
+        "O(n^2)",
+        "O(log n)"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "alg14",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, describe what a greedy algorithm is.",
+      "answer": [
+        "makes locally optimal choice",
+        "hopes for global optimum",
+        "example coin change mst"
+      ]
+    },
+    {
+      "id": "alg15",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which algorithm is commonly used to build a Minimum Spanning Tree (MST)?",
+      "choices": [
+        "Dijkstra's algorithm",
+        "Bellman-Ford algorithm",
+        "Kruskal's algorithm",
+        "Floyd-Warshall"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "alg16",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, explain what backtracking is with one example.",
+      "answer": [
+        "try partial solutions",
+        "undo when invalid",
+        "examples n queens sudoku"
+      ]
+    },
+    {
+      "id": "alg17",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which data structure is used to implement a priority queue efficiently?",
+      "choices": [
+        "Array",
+        "Linked List",
+        "Heap",
+        "Stack"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "alg18",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, describe what big-O notation tells you about an algorithm.",
+      "answer": [
+        "growth rate",
+        "upper bound",
+        "ignores constants",
+        "asymptotic complexity"
+      ]
+    },
+    {
+      "id": "alg19",
+      "type": "mcq",
+      "topic": "Algorithms",
+      "text": "Which traversal of a binary search tree (BST) outputs keys in sorted order?",
+      "choices": [
+        "Preorder",
+        "Postorder",
+        "Inorder",
+        "Level-order"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "alg20",
+      "type": "short",
+      "topic": "Algorithms",
+      "text": "In 2–4 lines, explain what memoization is and how it differs from tabulation.",
+      "answer": [
+        "store results of function calls",
+        "top down vs bottom up",
+        "dp techniques"
+      ]
+    }
+  ],
+  "Math": [
+    {
+      "id": "math1",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is 7 × 8?",
+      "choices": [
+        "48",
+        "54",
+        "56",
+        "64"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "math2",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, explain what a prime number is and give one example.",
+      "answer": [
+        "greater than 1",
+        "only divisible by 1 and itself",
+        "example 2 3 5 7"
+      ]
+    },
+    {
+      "id": "math3",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is the derivative of x^2 with respect to x?",
+      "choices": [
+        "x",
+        "2x",
+        "x^2",
+        "2"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "math4",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, describe what the Pythagorean theorem states.",
+      "answer": [
+        "right triangle",
+        "a squared plus b squared equals c squared",
+        "hypotenuse"
+      ]
+    },
+    {
+      "id": "math5",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "Which of these numbers is a prime?",
+      "choices": [
+        "21",
+        "23",
+        "25",
+        "27"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "math6",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, explain what a fraction like 3/4 represents.",
+      "answer": [
+        "part of a whole",
+        "numerator denominator",
+        "three out of four equal parts"
+      ]
+    },
+    {
+      "id": "math7",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is 15 ÷ 3?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "math8",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, describe what an average (arithmetic mean) is.",
+      "answer": [
+        "sum of values divided by count",
+        "measure of central tendency"
+      ]
+    },
+    {
+      "id": "math9",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is the value of π (pi) approximately?",
+      "choices": [
+        "2.14",
+        "2.71",
+        "3.14",
+        "3.41"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "math10",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, explain what a linear function is, and give an example.",
+      "answer": [
+        "straight line",
+        "form ax + b",
+        "example y = 2x + 1"
+      ]
+    },
+    {
+      "id": "math11",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is 9² (9 squared)?",
+      "choices": [
+        "9",
+        "18",
+        "72",
+        "81"
+      ],
+      "answer": 3
+    },
+    {
+      "id": "math12",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, describe what a percentage is and give an example.",
+      "answer": [
+        "per hundred",
+        "convert fraction to percent",
+        "example 0.5 is 50 percent"
+      ]
+    },
+    {
+      "id": "math13",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is the square root of 81?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "math14",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, explain what a right angle is.",
+      "answer": [
+        "90 degrees",
+        "quarter turn",
+        "perpendicular lines"
+      ]
+    },
+    {
+      "id": "math15",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is 3 + 4 × 2 (using standard operator precedence)?",
+      "choices": [
+        "14",
+        "11",
+        "10",
+        "7"
+      ],
+      "answer": 1
+    },
+    {
+      "id": "math16",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, describe what a variable represents in algebra.",
+      "answer": [
+        "symbol stands for unknown value",
+        "can change",
+        "used in equations"
+      ]
+    },
+    {
+      "id": "math17",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is 25% of 200?",
+      "choices": [
+        "25",
+        "40",
+        "50",
+        "75"
+      ],
+      "answer": 2
+    },
+    {
+      "id": "math18",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, explain what an equation is.",
+      "answer": [
+        "statement two expressions are equal",
+        "can be solved for variable"
+      ]
+    },
+    {
+      "id": "math19",
+      "type": "mcq",
+      "topic": "Math",
+      "text": "What is 10³ (10 to the power of 3)?",
+      "choices": [
+        "10",
+        "30",
+        "100",
+        "1000"
+      ],
+      "answer": 3
+    },
+    {
+      "id": "math20",
+      "type": "short",
+      "topic": "Math",
+      "text": "In 2–4 lines, explain the difference between area and perimeter.",
+      "answer": [
+        "area measures inside space",
+        "perimeter measures boundary length"
+      ]
+    }
+  ]
+}
