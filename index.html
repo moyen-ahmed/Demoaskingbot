@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Interview Chatbot • LLM</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#11161f; --soft:#151b26;
+    --accent:#7dd3fc; --accent2:#a78bfa; --text:#e5e7eb; --muted:#9aa1ad;
+    --good:#86efac; --bad:#fca5a5; --line:#212a38;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:radial-gradient(1000px 500px at 10% -10%, #0f172a 0, transparent 60%), linear-gradient(160deg,#0b0e14,#0b0e14 60%);}
+  body{color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Ubuntu,Helvetica,Arial}
+  .app{max-width:960px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column}
+  .topbar{
+    position:sticky;top:0;z-index:10;background:linear-gradient(90deg,var(--soft),#0f1521);
+    border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;gap:12px
+  }
+  .logo{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 90deg,var(--accent),var(--accent2));box-shadow:0 0 20px #3b82f6aa}
+  .title{font-weight:700;letter-spacing:.3px}
+  .tag{margin-left:auto;font-size:12px;color:var(--muted);padding:4px 10px;border:1px solid #263043;border-radius:999px}
+
+  .chat{flex:1;display:flex;flex-direction:column;gap:14px;padding:16px;overflow:auto}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+  .picker{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;padding:14px}
+  .picker label{display:flex;flex-direction:column;font-size:14px;color:var(--muted);gap:6px}
+  .picker input,.picker select{background:var(--soft);border:1px solid #263043;color:var(--text);padding:10px 12px;border-radius:10px;outline:none}
+  .picker button{align-self:end;background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;color:#05111c;font-weight:700;padding:10px 14px;border-radius:12px;cursor:pointer}
+
+  .row{display:flex;gap:10px}
+  .bot,.user{display:flex}
+  .user{justify-content:flex-end}
+  .bubble{max-width:70ch;background:#0f1420;border:1px solid #1f2633;padding:12px 14px;border-radius:14px}
+  .bot .bubble{background:#0f1714;border-color:#1d2b23}
+  .meta{font-size:12px;color:var(--muted);margin-top:4px}
+  .mcq{display:grid;gap:8px;margin-top:8px}
+  .mcq button{background:transparent;color:var(--text);border:1px solid #263043;padding:10px 12px;border-radius:10px;text-align:left;cursor:pointer}
+  .mcq button:hover{border-color:#3a4661}
+  .feedback{margin-top:8px}
+  .feedback.ok{color:var(--good)}
+  .feedback.bad{color:var(--bad)}
+  .score{font-size:12px;color:var(--muted);margin-top:4px}
+
+  .composer{position:sticky;bottom:0;background:linear-gradient(0deg,#0d121c,transparent);padding:12px;border-top:1px solid var(--line);display:flex;gap:10px}
+  .composer input{flex:1;background:#0f1420;border:1px solid #1f2633;color:var(--text);padding:12px 14px;border-radius:12px;outline:none}
+  .composer button{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#05111c;border:none;border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer}
+  @media(max-width:720px){.picker{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="logo"></div>
+    <div class="title">Interview Chatbot</div>
+    <div class="tag">LLM-powered</div>
+  </div>
+
+  <main id="chat" class="chat">
+    <div class="card picker">
+      <label>
+        Topic
+        <select id="topic">
+          <option>AI</option>
+          <option>Data Science</option>
+          <option>Web Dev</option>
+          <option>Algorithms</option>
+          <option>Math</option>
+        </select>
+      </label>
+      <label>
+        # Questions
+        <input id="num" type="number" min="1" max="10" value="5" />
+      </label>
+      <button id="startBtn">Start</button>
+    </div>
+
+    <div class="row bot">
+      <div class="bubble">
+        <strong>Welcome!</strong> Pick a topic and press <em>Start</em>. I’ll generate questions with an LLM and score your answers.
+      </div>
+    </div>
+  </main>
+
+  <footer class="composer">
+    <input id="answerInput" type="text" placeholder="Type your answer and press Enter…" disabled />
+    <button id="sendBtn" disabled>Send</button>
+  </footer>
+</div>
+
+<script>
+  const API_BASE = "http://localhost:8000";
+  const chatEl = document.getElementById("chat");
+  const topicEl = document.getElementById("topic");
+  const numEl = document.getElementById("num");
+  const startBtn = document.getElementById("startBtn");
+  const inputEl = document.getElementById("answerInput");
+  const sendBtn = document.getElementById("sendBtn");
+
+  let sessionId = null;
+  let currentQuestion = null;
+  let waiting = false;
+
+  function escapeHTML(s){return s.replace(/[&<>\"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+
+  function addBot(html){
+    const row = document.createElement("div"); row.className="row bot";
+    row.innerHTML = `<div class="bubble">${html}</div>`;
+    chatEl.appendChild(row); chatEl.scrollTop = chatEl.scrollHeight;
+  }
+  function addUser(text){
+    const row = document.createElement("div"); row.className="row user";
+    row.innerHTML = `<div class="bubble">${escapeHTML(text)}</div>`;
+    chatEl.appendChild(row); chatEl.scrollTop = chatEl.scrollHeight;
+  }
+
+  function renderQuestion(q){
+    currentQuestion = q;
+    let extra = "";
+    if(q.type === "mcq" && Array.isArray(q.choices)){
+      extra = `<div class="mcq">` + q.choices.map((c,i)=>`<button class="mcq-btn" data-idx="${i}">${escapeHTML(`${i} — ${c}`)}</button>`).join("") + `</div>`;
+    }
+    addBot(`<strong>Q:</strong> ${escapeHTML(q.text)}${extra}`);
+
+    if(q.type === "short"){ inputEl.disabled=false; sendBtn.disabled=false; inputEl.focus(); }
+    else { inputEl.disabled=true; sendBtn.disabled=true; }
+
+    if(q.type === "mcq"){
+      document.querySelectorAll(".mcq-btn").forEach(btn=>{
+        btn.addEventListener("click", ()=> submitAnswer(btn.getAttribute("data-idx")));
+      });
+    }
+  }
+
+  async function startQuiz(){
+    if(waiting) return; waiting = true; startBtn.disabled = true;
+    // Clear chat except picker and welcome
+    [...chatEl.querySelectorAll(".row.bot,.row.user")].forEach(n=>n.remove());
+    addBot(`Starting <strong>${escapeHTML(topicEl.value)}</strong> — ${escapeHTML(numEl.value)} questions.`);
+
+    try{
+      const res = await fetch(`${API_BASE}/api/start`, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({topic: topicEl.value, num_questions: parseInt(numEl.value||"5",10)})
+      });
+      if(!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      sessionId = data.session_id;
+      renderQuestion(data.first_question);
+    }catch(err){
+      addBot(`Could not start quiz. ${escapeHTML(String(err))}`);
+    }finally{
+      waiting = false; startBtn.disabled = false;
+    }
+  }
+
+  async function submitAnswer(answerText){
+    if(!sessionId || !currentQuestion || waiting) return; waiting = true;
+
+    const userText = String(answerText ?? inputEl.value ?? "").trim();
+    if(!userText){ waiting=false; return; }
+    addUser(userText);
+    inputEl.value=""; inputEl.disabled=true; sendBtn.disabled=true;
+
+    try{
+      const res = await fetch(`${API_BASE}/api/answer`, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({session_id: sessionId, answer: userText})
+      });
+      if(!res.ok) throw new Error(await res.text());
+      const data = await res.json();
+      addBot(`<div class="feedback ${data.correct?'ok':'bad'}">${escapeHTML(data.feedback)}</div><div class="score">Score: ${data.score}/${data.total}</div>`);
+      if(data.finished){
+        addBot(`<strong>Finished!</strong> Final score: ${data.score}/${data.total}.`);
+        currentQuestion = null;
+        return;
+      }
+      renderQuestion(data.next_question);
+    }catch(err){
+      addBot(`Error submitting answer. ${escapeHTML(String(err))}`);
+    }finally{
+      waiting = false;
+    }
+  }
+
+  startBtn.addEventListener("click", startQuiz);
+  sendBtn.addEventListener("click", ()=>submitAnswer());
+  inputEl.addEventListener("keydown", e=>{ if(e.key==="Enter") submitAnswer(); });
+</script>
+</body>
+</html>
